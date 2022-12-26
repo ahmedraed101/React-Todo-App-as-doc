@@ -1,14 +1,25 @@
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from './../firebase/firebase.js'
 import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { createTodo } from './../redux/slices/todoSlice'
 
 const NavBar = () => {
     const styleNavLink = ({ isActive }) => (isActive ? 'red' : 'blue')
     const [user] = useAuthState(auth)
 
+    const dispatch = useDispatch()
+
     return (
         <div className='flex justify-between mx-10 my-5 shadow-md p-5'>
             <ul className='flex gap-5'>
+                <button
+                    onClick={() => {
+                        dispatch(createTodo('one'))
+                    }}
+                >
+                    try dispatch
+                </button>
                 <li>
                     <NavLink to='/' className={styleNavLink}>
                         home

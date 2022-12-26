@@ -17,8 +17,8 @@ const SignPage = () => {
     }
     return (
         <div>
-            <h3>SignPage</h3>
-            <button onClick={googleLogin}>signup with Google 🟥🟨🟩🟦</button>
+            <h3>Sign Page</h3>
+            <button onClick={googleLogin}>signin with Google 🟥🟨🟩🟦</button>
         </div>
     )
 }
