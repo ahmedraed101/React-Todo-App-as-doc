@@ -2,7 +2,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from './../firebase/firebase.js'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { createTodo } from './../redux/slices/todoSlice'
+import { createTodo, clearStore } from './../redux/slices/todoSlice'
 
 const NavBar = () => {
     const styleNavLink = ({ isActive }) => (isActive ? 'red' : 'blue')
@@ -45,7 +45,10 @@ const NavBar = () => {
                         </p>
                     </div>
                     <button
-                        onClick={() => auth.signOut()}
+                        onClick={() => {
+                            auth.signOut()
+                            dispatch(clearStore())
+                        }}
                         className='text-red-600  px-3 py-1 mt-3 text-sm text-center hover:bg-red-600 hover:text-white duration-200'
                     >
                         sign out

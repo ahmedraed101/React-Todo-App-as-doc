@@ -5,6 +5,7 @@ import { auth } from './../firebase/firebase'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setInitState, createTodo } from './../redux/slices/todoSlice'
+import Todo from './../components/Todo'
 
 const Dashboard = () => {
     const navigate = useNavigate()
@@ -24,7 +25,7 @@ const Dashboard = () => {
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             if (!user) navigate('/sign')
-            dispatch(setInitState(user.uid))
+            else dispatch(setInitState(user.uid))
         })
     }, [navigate, dispatch])
 
@@ -51,9 +52,9 @@ const Dashboard = () => {
                     add Todo
                 </button>
             </form>
-            <div>
+            <div className='overflow-hidden p-10'>
                 {todos.map((todo) => (
-                    <h2 key={todo.id}>{todo.text}</h2>
+                    <Todo key={todo.id} todo={todo} />
                 ))}
             </div>
         </div>
